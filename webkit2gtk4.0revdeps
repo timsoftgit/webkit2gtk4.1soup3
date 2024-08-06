@@ -1,0 +1,212 @@
+#last modified 2024-07-30
+#this file contains a list of the slackbuilds which use webkit2gtk (4.0)
+#for brevity, i'll use 4.0 and 4.1 instead of webkit2gtk4.0 etc
+#in front of the name is a letter representing current state
+# N no change to support both 4.0 and 4.1
+# B change required but doesn't remove 4.0 support
+# C change removes support for 4.0
+# F fails miserably at the moment. revisit when have time
+# 0 other - as described
+#after buildname is version tested/used, and any build options, and the
+#dependencies are listed indented one character per level, after the word requires
+#and/or optional
+#if a depth is mentioned, depth0 is no dependencies, depth1 is only deps at max level0 etc
+#as an example 4.1 itself is listed first.
+#NOTE: for packages/deps already built further up the list,depth will be written instead
+#of expanding all sub deps multiply times.
+#
+#IMPORTANT NOTE: in all cases, only 4.1 is installed before building packages.
+exit
+#
+N webkit2gtk4.1 2.44.2-1
+requires
+ bubbkewrap 0.8.0-1
+ geoclue2 2.6.0-1 AVAHI=yes
+ optional
+  avahi 0.8-7 (add group 214 avahi and user 214 avahi)
+  requires
+   libdaemon 0.14-1
+ libsoup3 3.4.4-1
+ wpebackend-fdo 1.14.2-1
+ requires
+  libwpe 1.16.0-1
+ xdg-dbus-proxy 0.1.4-1
+ unifdef 2.12-1 
+  
+N apvlv 0.5.0
+requires
+ webkit2gtk4.1 (depth3)
+
+N badwolf 1.3.0
+
+B bottles
+patch is as follows.. add to slackbuild before mkdir build
+if $(pkg-config --exists webkit2gtk-4.1); then
+  #patch if using webkit2gtk4.1
+  sed -i 's/4.0/4.1/g' src/main.py
+fi
+requires
+ cabextract 1.11-1
+ gtksourceview4 4.8.4-1
+ libhandy 1.8.3-1
+ requires
+  gi-docgen 2023.1-1
+  requires
+   python3-toml 0.10.2-1
+   python3-typogrify 2.0.7-1
+   requires
+    python-smartypants 2.0.1-1
+  patool 1.15.0-1
+ p7zip 17.04-1
+ webkit2gtk4.1 (depth3)
+ wine 9.13-1
+
+F cinny-desktop
+requires
+ libayatana-appindicator 0.5.93-1
+ requires
+  libayatana-indicator 0.9.4-1
+  requires
+   ayatana-ido 0.10.1-1
+ webkit2gtk4.1 (depth3)
+
+N devhelp 43.0-1
+requires
+ webkit2gtk4.1 (depth3)
+
+C gnome-boxes update to 43.5 and 
+change line after cp -a \ to
+  COPYING copyright HACKING.md NEWS README.md \
+requires (libhandy updated to 1.6.0) (note. /root/.cache/ccache created out of tree)
+ gtk-vnc 1.3.1-1
+ gtksourceview4 (depth0)
+ libhandy (depth3 updated to at least 1.6.0)
+ libosinfo 1.10.0-0
+ requires
+  osinfo-db 20230308-1
+  requires
+   osinfo-db-tools 1.10.0-1
+   requires
+    libsoup3 (depth0) unlisted dep - used by /usr/bin/osinfo-db-import, part of osinfo-db-tools
+ libvirt-glib 4.0.0-1
+ requires
+  libvirt 9.1.0-1
+  requires
+   yajl 2.1.0-3
+ spice-gtk 0.42-1
+ requires
+  spice 0.15.2-1
+  requires
+   spice-protocol 0.14.4-1
+ tracker 3.2.1-1
+ webkit2gtk4.1 (depth3)
+
+B gnome-builder [dependees]  (Bob Funk <bobfunk11@gmail.com>) 42.1-2 (depth5)
+ add to slackbuild before "mkdir build"
+if $(pkg-config --exits webkit2gtk-4.1); then
+  #patch if using webktigtk4.1
+  sed -i 's/webkit2gtk-4.0/webkit2gtk-4.1/g' meson.build
+  sed -i 's/libsoup-2.4/libsoup-3.0/g' src/plugins/rust-analyzer/meson.build
+  sed -i 's/4.0/4.1/g' src/libide/gui/ide-application-plugins.c
+  sed -i 's/4.0/4.1/g' src/libide/webkit/ide-webkit-plugin.c
+fi
+requires
+ gtksourceview4 (depth0)
+ libhandy (depth3)
+ jsonrpc-glib 3.43.0-1
+ requires
+  gi-docgen 2023.1-1 (depth2)
+ libpeas 1.30.0-1
+ template-glib 3.36.1-1
+ webkit2gtk4.1 (depth3)
+ cmark 0.31.0-1
+ libgit2-glib 0.99.0-1
+ requires
+  libgit2 1.8.1-1
+ gspell 1.12.1-1
+ Sphinx 5.3.0-1
+ requires
+  alabaster 0.7.13-1
+  imagesize 1.4.1-2
+  python3-babel 2.15.0-1
+  requires
+   pytz 2021.3-1
+  snowballstemmer 2.2.0-1
+  sphinxcontrib-applehelp 1.0.8-1
+  requires
+   python3-build 1.2.1-1
+   requires
+    python3-pyproject-hooks 1.0.0-1
+    requires
+     python3-flit_core 3.9.0-1
+     python3-installer 0.7.0-1
+  sphinxcontrib-devhelp 1.0.6-1
+  requires
+   python3-build (depth2)
+  sphinxcontrib-jsmath 1.0.1-1
+  sphinxcontrib-qthelp 1.0.7-1
+  requires
+   python3-build (depth2)
+  sphinxxontrib-serializinghtml 1.1.10-1
+  requires
+   python3-build (depth2)
+  python-importlib_metadata 8.0.0-1
+  requires
+   python-zipp 3.17.0-1
+   requires
+    python3-setuptools-opt 70.3.0-1
+    requires
+     python3-build (depth2)
+     python3-wheel 0.41.3-1
+     requires
+      python3-flit_core (depth0)
+      python3-installer (depth0)
+ sphinx-rtd-theme 2.0.0-1
+ requires
+  sphinxcontrib-jquery 4.1-1
+  requires
+   python3-build (depth2)
+ sysprof 3.44.0-1
+ requires
+  libdazzle 3.44.0-1
+ libportal 0.6-1
+
+O gfbgraph (support dropped in gnome-photos version 43.0-1 )
+
+C gnome-online-accounts [dependees]  (Ozan Tkyilmaz <ozan.turkyilmaz@gmail.com>) upgrade to 3.45.1-1 (depth4)
+change rest-legacy dep to rest (and webkit2gtk to webkit2gtk4.1) and replace the configure and make lines with
+mkdir build
+cd build
+  CFLAGS="$SLKCFLAGS" \
+  CXXFLAGS="$SLKCFLAGS" \
+  meson .. \
+    --buildtype=release \
+    --infodir=/usr/info \
+    --libdir=/usr/lib${LIBDIRSUFFIX} \
+    --localstatedir=/var \
+    --mandir=/usr/man \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    -Dstrip=true
+  "${NINJA:=ninja}"
+  DESTDIR=$PKG $NINJA install
+cd ..
+
+and remove the ABOUT-NLS item from the cp -a line.
+requires
+ rest 0.9.1-1 (depth1)
+ requires
+  libsoup3 3.4.4-1 (depth0)
+ webkit2gtk4.1 (depth3)
+
+C gnome-photos update version to 43.0-1 drops support for gfbgraph (depth6)
+requires
+ geocode-glib 3.26.4-1 (depth0)
+ grilo 0.3.15-2 SOUP3=true (depth2)
+ requires
+  liboauth 1.0.3-5 (depth0)
+  totem-pl-parser 3.26.6-1 (depth1)
+  requires
+   libuchardet 0.0.8-1 (depth0)
+ libdazzle (depth0)
+
