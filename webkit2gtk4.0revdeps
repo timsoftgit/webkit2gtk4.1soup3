@@ -1,4 +1,4 @@
-#last modified 2024-07-30
+#last modified 2024-08-06
 #this file contains a list of the slackbuilds which use webkit2gtk (4.0)
 #for brevity, i'll use 4.0 and 4.1 instead of webkit2gtk4.0 etc
 #in front of the name is a letter representing current state
@@ -6,14 +6,14 @@
 # B change required but doesn't remove 4.0 support
 # C change removes support for 4.0
 # F fails miserably at the moment. revisit when have time
-# 0 other - as described
-#after buildname is version tested/used, and any build options, and the
-#dependencies are listed indented one character per level, after the word requires
-#and/or optional
+# O other - as described
+#after buildname is version tested/used, and any build options, then the patch(es) listed
+#if needed and then the dependencies are listed indented one character per level, after
+#the word requires and/or optional
 #if a depth is mentioned, depth0 is no dependencies, depth1 is only deps at max level0 etc
 #as an example 4.1 itself is listed first.
 #NOTE: for packages/deps already built further up the list,depth will be written instead
-#of expanding all sub deps multiply times.
+#of expanding all sub deps multiple times.
 #
 #IMPORTANT NOTE: in all cases, only 4.1 is installed before building packages.
 exit
