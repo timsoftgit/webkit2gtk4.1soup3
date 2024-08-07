@@ -20,5 +20,5 @@ this is for that inbetween time. Hopefully a release will be more speedy than th
 Note: unless you are testing, do not switch to webkit2gtk4.1 unless all the packages you use can be updated. You will have
 to rebuild all of the packages.
 
-I am working on a script which will check an installed package for issues relating to this update, so hopefully will
-upload that here as well.
+souppkgchk is a script which will check a package for issues relating to this update, reporting files with dynamic linking
+to soup2, soup3, or both (a binary that will not run). It can be used for checking packages that may need work or updating.

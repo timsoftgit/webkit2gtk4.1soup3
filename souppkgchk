@@ -1,0 +1,103 @@
+#!/bin/sh
+#this checks a slackware package contents for presence of libs/binaries containing libsoup
+#if libsoup2 and libsoup3 are in same lib/binary it will fail to run, this will be flagged.
+#it takes optional -v or -vv (verbose or extra verbose) and (required) a package name as a parameter
+#
+#this is free software. use at your own risk.
+#Copyright 2024 Tim Dickson
+#see https://opensource.org/license/mit for license text.
+#
+if [ $# -eq 2 ]; then
+  if [ "$1" = "-v" ]; then
+    shift
+    VERBOSE="on"
+  elif [ "$1" = "-vv" ]; then
+    shift
+    VERBOSE="on2"
+  fi
+else
+  VERBOSE="off"
+fi
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 [-v|-vv] <pkgname>"
+  echo "reports if conflicting soup libs are in any libs or binaries in a package"
+  echo "script looks in current directory and /tmp"
+  echo "if -v is specified, the output is more verbose, and -vv is extra verbose"
+  exit 1
+fi
+CWD=$(pwd)
+TMPDIR=$(mktemp -d -t "souppkgchk.XXX")
+trap "cleanup; exit 1" SIGINT    #cleanup temp directory if user ctrl-c's out of script
+cd $TMPDIR
+if [ -f $1 ]; then
+  PKGNAME=$1
+elif [ -f $CWD/$1 ]; then
+  PKGNAME=$CWD/$1
+elif [ -f /tmp/$1 ]; then  #try /tmp/
+  PKGNAME=/tmp/$1
+else
+  echo "can't find package $1"
+  exit 1
+fi
+tar -xzf $PKGNAME
+#now loop through all files, identify executables and libs, and check for libsoup.
+readarray -t stuff < <(tar -tzf $PKGNAME)
+SP2CNT=0
+SP3CNT=0
+BADCNT=0
+for i in "${stuff[@]}"; do  #we do it this way to handle file paths with spaces
+  if [ "$VERBOSE" != "off" ]; then
+    echo "processing:$i"
+  fi
+  if [ "x$(file "$i"|awk -F": " '{print $2}'|awk '{print $1}')" = "xELF" -a $(file "$i"|grep statically|wc -l) -lt 1 ]; then
+    #we have a binary file not statically linked, so check it for soup libs
+    if [ "$VERBOSE" = "on2" ]; then
+       echo "identified binary file $i"
+    fi
+    SOUP2=$(ldd "$i" 2>/dev/null|grep "libsoup-2"|wc -l)
+    SOUP3=$(ldd "$i" 2>/dev/null|grep "libsoup-3"|wc -l)
+    if [ "$SOUP2" -gt 0 -a "$SOUP3" -gt 0 ]; then
+      echo "$i :contains both libsoup2 and libsoup3. this binary will fail to run."
+      ((SP2CNT+=1)); ((SP3CNT+=1)); ((BADCNT+=1))
+    elif [ "$SOUP2" -gt 0 ]; then
+      ((SP2CNT+=1))
+      if [ "$VERBOSE" != "off" ]; then
+        echo "$i :contains libsoup2"
+      fi
+    elif [ "$SOUP3" -gt 0 ]; then
+      ((SP3CNT+=1))
+      if [ "$VERBOSE" != "off" ]; then
+        echo "$i :contains libsoup3"
+      fi
+    else
+      if [ "$VERBOSE" = "on2" ]; then
+        echo "$i does not contain any links to libsoup"
+      fi
+    fi
+  fi
+done
+if [ $SP2CNT -gt 0 ]; then
+  if [ $SP2CNT -eq 1 ]; then
+    echo "$SP2CNT file is linked to libsoup2"
+  else
+    echo "$SP2CNT files are linked to libsoup2"
+  fi
+fi
+if [ $SP3CNT -gt 0 ]; then
+  if [ $SP3CNT -eq 1 ]; then
+    echo "$SP3CNT file is linked to libsoup3"
+  else
+    echo "$SP3CNT files are linked to libsoup3"
+  fi
+fi
+if [ $BADCNT -gt 0 ]; then
+  echo "$BADCNT executable(s)/lib(s) will fail to run due to linking to both versions of soup"
+fi
+#now clean up temp dir
+cleanup() {  #function to remove temp directory and contents
+cd $CWD
+if [ "$TMPDIR" != "/" -a $(echo $TMPDIR|awk '{print substr($1,1,5)}') = "/tmp/" ]; then  #minimal sanity check
+  rm -rf $TMPDIR
+fi
+}
+cleanup
