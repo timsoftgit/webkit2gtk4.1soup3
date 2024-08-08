@@ -61,7 +61,7 @@ requires
  webkit2gtk4.1 (depth3)
  wine 9.13-1
 
-F cinny-desktop
+F cinny-desktop 4.0.3
 requires
  libayatana-appindicator 0.5.93-1
  requires
@@ -101,7 +101,7 @@ requires (libhandy updated to 1.6.0) (note. /root/.cache/ccache created out of t
  tracker 3.2.1-1
  webkit2gtk4.1 (depth3)
 
-B gnome-builder [dependees]  (Bob Funk <bobfunk11@gmail.com>) 42.1-2 (depth5)
+B gnome-builder 42.1-2 (depth5)
  add to slackbuild before "mkdir build"
 if $(pkg-config --exits webkit2gtk-4.1); then
   #patch if using webktigtk4.1
@@ -173,7 +173,7 @@ requires
 
 O gfbgraph (support dropped in gnome-photos version 43.0-1 )
 
-C gnome-online-accounts [dependees]  (Ozan Tkyilmaz <ozan.turkyilmaz@gmail.com>) upgrade to 3.45.1-1 (depth4)
+C gnome-online-accounts upgrade to 3.45.1-1 (depth4)
 change rest-legacy dep to rest (and webkit2gtk to webkit2gtk4.1) and replace the configure and make lines with
 mkdir build
 cd build

@@ -5,6 +5,8 @@
 #
 #this is free software. use at your own risk.
 #Copyright 2024 Tim Dickson
+#version 1.1
+#
 #see https://opensource.org/license/mit for license text.
 #
 if [ $# -eq 2 ]; then
@@ -46,7 +48,7 @@ SP2CNT=0
 SP3CNT=0
 BADCNT=0
 for i in "${stuff[@]}"; do  #we do it this way to handle file paths with spaces
-  if [ "$VERBOSE" != "off" ]; then
+  if [ "$VERBOSE" = "on2" ]; then
     echo "processing:$i"
   fi
   if [ "x$(file "$i"|awk -F": " '{print $2}'|awk '{print $1}')" = "xELF" -a $(file "$i"|grep statically|wc -l) -lt 1 ]; then
