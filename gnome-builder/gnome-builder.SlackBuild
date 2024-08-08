@@ -80,7 +80,7 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-if [ x`ls /var/lib/pkgtools/packages/webkit2gtk4.1-* 2>/dev/null|wc -l` = "x1" ]; then
+if $(pkg-config --exists webkit2gtk-4.1); then
   #patch if using webktigtk4.1
   sed -i 's/webkit2gtk-4.0/webkit2gtk-4.1/g' meson.build
   sed -i 's/libsoup-2.4/libsoup-3.0/g' src/plugins/rust-analyzer/meson.build
