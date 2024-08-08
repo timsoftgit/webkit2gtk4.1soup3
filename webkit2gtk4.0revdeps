@@ -210,3 +210,16 @@ requires
    libuchardet 0.0.8-1 (depth0)
  libdazzle (depth0)
 
+C shotwell 0.32.6 (version increased, and modify build to use meson) (depth4)
+-requires
+ libportal 0.6-1 (depth0)
+ libunique 1.1.6-6 (depth0)
+ webkit2gtk4.1 (depth3)
+ rest 0.9.1-1 (depth2)
+ -requires
+  python3-typogrify 2.0.7-1 (depth1)
+  -requires
+   python-smartypants 2.0.1-1 (depth0)
+  gtksourceview5 5.4.2-1 (depth0)
+  libadwaita 1.2.5-1 (depth0)
+  libsoup3 (depth0)
