@@ -33,7 +33,7 @@ requires
  xdg-dbus-proxy 0.1.4-1
  unifdef 2.12-1 
   
-N apvlv 0.5.0
+N apvlv 0.6.0
 requires
  webkit2gtk4.1 (depth3)
 
