@@ -211,15 +211,34 @@ requires
  libdazzle (depth0)
 
 C shotwell 0.32.6 (version increased, and modify build to use meson) (depth4)
--requires
+requires
  libportal 0.6-1 (depth0)
  libunique 1.1.6-6 (depth0)
  webkit2gtk4.1 (depth3)
  rest 0.9.1-1 (depth2)
- -requires
+ requires
   python3-typogrify 2.0.7-1 (depth1)
-  -requires
+  requires
    python-smartypants 2.0.1-1 (depth0)
   gtksourceview5 5.4.2-1 (depth0)
   libadwaita 1.2.5-1 (depth0)
   libsoup3 (depth0)
+
+wxPython4 4.2.1-2 (no changes needed for 4.1 support
+requires
+ webkit2gtk4.1 2.44.2-1 (depth3)
+ pathlib2 2.3.2-1 (depth1)
+ requires
+  python2-scandir 1.10.0-1 (depth0)
+ python3-attrdict 2.0.1-1 (depth3)
+ requires
+  wheel (depth0)
+  python3-build (depth2)
+  python3-installer (depth0)
+
+wxWidgets 3.2.5 (depth4)patch to add support for webkit2gtk4.1 by adding after the test for webkit2gtk
+if $(pkg-config --exists webkit2gtk-4.1); then
+  wk="ON"
+fi
+-requires
+ webkit2gtk4.1 (depth3)
