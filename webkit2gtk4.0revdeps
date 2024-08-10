@@ -210,6 +210,12 @@ requires
    libuchardet 0.0.8-1 (depth0)
  libdazzle (depth0)
 
+N nyxt 3.11.7-1 (depth1) works fine without changes
+-requires
+ *libfixposix 0.5.1-1 (dethp0)
+ *sbcl 2.4.7-1 (depth0) ***should have comment in readme, need to relog in to source profile.d files
+ webkit2gtk4.1 (depth3)
+
 C shotwell 0.32.6 (version increased, and modify build to use meson) (depth4)
 requires
  libportal 0.6-1 (depth0)
