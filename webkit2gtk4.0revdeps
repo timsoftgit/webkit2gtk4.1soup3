@@ -230,7 +230,19 @@ requires
   libadwaita 1.2.5-1 (depth0)
   libsoup3 (depth0)
 
-wxPython4 4.2.1-2 (no changes needed for 4.1 support
+C videomass 5.0.20-1 (depth7) (seems to run ok)
+requires
+ wxPython4 (depth4)
+ python3-build (depth2)
+ python3-hatchling (depth5)
+ python3-babel (depth1)
+optional
+ yt-dlp 2024.08.01-1 (depth6)
+ requires
+  python3-build (depth2)
+  python3-hatchling (depth5)
+
+C wxPython4 4.2.1-2 (depth4) (no changes needed for 4.1 support
 requires
  webkit2gtk4.1 2.44.2-1 (depth3)
  pathlib2 2.3.2-1 (depth1)
