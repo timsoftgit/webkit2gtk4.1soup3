@@ -230,6 +230,11 @@ requires
   libadwaita 1.2.5-1 (depth0)
   libsoup3 (depth0)
 
+C surf 2.1-1 (depth4)works with patch
+-requires
+ webkit2gtk4.1 (depth3)
+ dmenu 5.3-1 (depth0)
+
 C videomass 5.0.20-1 (depth7) (seems to run ok)
 requires
  wxPython4 (depth4)
