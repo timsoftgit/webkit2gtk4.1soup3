@@ -210,6 +210,11 @@ requires
    libuchardet 0.0.8-1 (depth0)
  libdazzle (depth0)
 
+B gnuash 4.11-2 (depth4) patched
+requires
+ gtest 1.12.1-1 (depth0)
+ webkit2gtk4.1 (depth3)
+
 N nyxt 3.11.7-1 (depth1) works fine without changes
 -requires
  *libfixposix 0.5.1-1 (dethp0)
@@ -230,12 +235,12 @@ requires
   libadwaita 1.2.5-1 (depth0)
   libsoup3 (depth0)
 
-C surf 2.1-1 (depth4)works with patch
+B surf 2.1-1 (depth4)works with patch
 -requires
  webkit2gtk4.1 (depth3)
  dmenu 5.3-1 (depth0)
 
-C videomass 5.0.20-1 (depth7) (seems to run ok)
+B videomass 5.0.20-1 (depth7) (seems to run ok)
 requires
  wxPython4 (depth4)
  python3-build (depth2)
@@ -247,11 +252,11 @@ optional
   python3-build (depth2)
   python3-hatchling (depth5)
 
-C wxGTK3 3.0.5-4 (depth4) (add detection of 4.1 for wk variable in build script)
+B wxGTK3 3.0.5-4 (depth4) (add detection of 4.1 for wk variable in build script)
 requires
  webkit2gtk4.1 (depth3)
 
-C wxPython4 4.2.1-2 (depth4) (no changes needed for 4.1 support
+B wxPython4 4.2.1-2 (depth4) (no changes needed for 4.1 support
 requires
  webkit2gtk4.1 2.44.2-1 (depth3)
  pathlib2 2.3.2-1 (depth1)
@@ -263,7 +268,7 @@ requires
   python3-build (depth2)
   python3-installer (depth0)
 
-wxWidgets 3.2.5 (depth4)patch to add support for webkit2gtk4.1 by adding after the test for webkit2gtk
+B wxWidgets 3.2.5 (depth4)patch to add support for webkit2gtk4.1 by adding after the test for webkit2gtk
 if $(pkg-config --exists webkit2gtk-4.1); then
   wk="ON"
 fi
