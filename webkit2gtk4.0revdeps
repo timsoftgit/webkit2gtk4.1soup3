@@ -274,3 +274,35 @@ if $(pkg-config --exists webkit2gtk-4.1); then
 fi
 -requires
  webkit2gtk4.1 (depth3)
+
+N xiphos 4.2.1-6 (depth11) (this has been updated
+-requires
+ rarian 0.8.5-1 (depth1)
+ -requires
+  tinyxml 2.6.2-2 (depth0)
+ biblesync 2.1.0-1 (depth0)
+ libminizip 1.2.13-1 (depth0)
+ sword (depth0)
+ webkit2gtk4.1 (depth3) (shouldn't be here because it is included in yelp deps.)
+ gtkhtml 4.10.0-3 (depth0)
+ appstream-glib 0.8.3-2 (depth1)
+ -requires
+  gcab 1.6-1 (depth0)
+ yelp (depth10)
+
+N yelp 42.2-2 (depth10) (this has been updated)
+requires
+ libhandy 1.8.3-1 (depth3)
+ requires
+  gi-docgen 2023.1-1 k (depth2)
+  requires
+   python3-toml 0.10.2-1 (depth0)
+   python3-typogrify 2.0.7-1 (depth1)
+   requires
+    python-smartypants 2.0.1-1 (depth0)
+ webkit2gtk4.1 (depth3) 
+ yelp-tools 42.1-1 (depth9)
+ requires
+  yelp-xsl 42.1-1 k (depth8)
+  requires
+   lxml (depth7)
