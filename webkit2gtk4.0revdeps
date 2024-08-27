@@ -221,6 +221,111 @@ N nyxt 3.11.7-1 (depth1) works fine without changes
  *sbcl 2.4.7-1 (depth0) ***should have comment in readme, need to relog in to source profile.d files
  webkit2gtk4.1 (depth3)
 
+N pytrainer 2.2.1-1 (depth13)
+requires
+ python3-lxml 5.3.0-1 (depth7)
+ requires
+  BeautifulSoup4 (depth6)
+  html5lib (depth1)
+  python3-cssselect 1.2.0-1 (depth3)
+  requires
+   python3-build (depth2)
+   python3-wheel (depth1)
+ SQLAlchemy 2.0.28-1 (depth1)
+ requires
+  greenlet 2.0.2-1 (depth0)
+ python3-matplotlib 3.8.4-1 (depth12)
+ requires
+  python3-contourpy 1.0.7-1 (depth6)
+  requires
+   pybind11 (depth0)
+   python3-numpy (depth5)
+   python3-setuptools-opt (depth3)
+  python3-fonttools 4.51.1-1 (depth11)
+  requires
+   python-unicodedata2 15.1.0-1 (depth0)
+   python3-scipy 1.12.0-1 (depth7)
+   requires
+    pybind11 (depth0)
+    python3-pythran 0.15.0-1 (depth6)
+    requires
+     python3-beniget 0.4.2.post1-1 (depth1)
+     requires
+      python3-gast 0.5.5-1 (depth0)
+     python3-numpy (depth5)
+     python3-setuptools-opt (depth3)
+     xsimd 13.0.0-1 (depth1)
+     requires
+      doctest 2.4.9-1 (depth0)
+    OpenBLAS (depth0)
+   python3-zopfli 0.2.1-1 (depth0)
+   python3-fs 2.4.15-1 (depth0)
+   python3-uharfbuzz 0.39.3-1 (depth3)
+   requires
+    python3-build (depth2)
+    python3-wheel (depth1)
+   freetype-py 2.4.0-1 (depth7)
+   requires
+    Sphinx (depth6)
+    sphinx-rtd-theme (depth4)
+   python3-lxml (depth4)
+   python3-lz4 4.3.3-1 (depth10)
+   requires
+    python3-tox 4.18.0-1 (depth9)
+    requires
+     python3-cachetools 5.5.0-1 (depth0)
+     colorama 0.4.6-1 (depth6)
+     requires
+      python3-hatchling (depth5)
+     python3-pyproject-api 1.7.1-1 (depth7)
+     requires
+      python3-hatch_vcs (depth6)
+     python3-virtualenv 20.26.3-1 (depth8)
+     requires
+      python3-setuptools-scm-opt (depth6)
+      python3-distlib 0.3.8-1 (depth3)
+      requires
+       python3-build (depth2)
+       python3-wheel (depth1)
+      python3-filelock 3.15.4-1 (depth7)
+      requires
+       python3-hatch_vcs (depth6)
+      python3-platformdirs (depth7)
+    python3-pytest (depth8)
+    python3-pytest-runner 6.0.1-1 (depth9)
+    requires
+     python3-pytest (depth8)
+    python3-wheel (depth1)
+    python3-pkgconfig 1.5.5-1 (depth0)
+  importlib-resources 5.1.0-1 (depth1)
+  requires
+   python3-toml (depth0)
+  pybind11 (depth0)
+  python3-setuptools-scm-opt 8.0.2-1 (depth6)
+  requires
+   typing-extensions (depth3)
+   python3-rich 13.7.1-1 (depth5)
+   requires
+    python3-poetry-core (depth3)
+    python3-markdown-it-py 3.0.0-1 (depth4)
+    requires
+     python3-mdurl 0.1.2-1 (depth3)
+     requires
+      python3-build (depth2)
+   python-importlib_metadata (depth5)
+  python3-numpy (depth5)
+  python3-dateutil 2.9.0-1 (depth0)
+  pytz (depth0)
+  python3-cycler 0.11.0-1 (depth0)
+  python3-kiwisolver 1.4.5-1 (depth5)
+  requires
+   cppy 1.2.1-1 (depth4)
+   requires
+    python3-setuptools-opt (depth3)
+  *python3-tornado 6.4.1-1 (depth0)
+ webkit2gtk4.1 (depth3)
+ zenity (depth4) (with the option WEBKITGTK=true )
+
 C shotwell 0.32.6 (version increased, and modify build to use meson) (depth4)
 requires
  libportal 0.6-1 (depth0)
