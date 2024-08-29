@@ -1,6 +1,10 @@
 #last modified 2024-08-06
 #this file contains a list of the slackbuilds which use webkit2gtk (4.0)
-#for brevity, i'll use 4.0 and 4.1 instead of webkit2gtk4.0 etc
+#with details of updates if required to use webkit2gtk4.1
+#it also includes those which use wxWidgets, wxPython4 and yelp
+#for brevity, I may use 4.0 and 4.1 instead of webkit2gtk and webkit2gtk4.1 etc
+#also I may refer to the webkit2gtk package as webkit2gtk4.0
+#
 #in front of the name is a letter representing current state
 # N no change to support both 4.0 and 4.1
 # B change required but doesn't remove 4.0 support
@@ -379,6 +383,47 @@ if $(pkg-config --exists webkit2gtk-4.1); then
 fi
 -requires
  webkit2gtk4.1 (depth3)
+
+N audacity 3.5.1-1 k (depth7) (reinstall wxWidgets first)
+MANUAL=yes
+requires
+ libsbsms 20220812_e6c9c3b-1 (depth0)
+ lilv 0.24.20-1 k (depth6)
+ requires
+  python3-numpy (depth5)  (possibly optional but added just in case)
+  sratom 0.6.14-1 (depth3)
+  requires
+   lv2 (depth2)
+ portaudio (depth2)
+ portmidi (depth0)
+ portsmf 234-1 (depth0)
+ rapidjson 1.1.0-5 (depth0)
+ soxr 0.1.3-1 (depth0)
+ suil 0.10.18-1 (depth3)
+ requires
+  lv2 1.18.10-1 (depth2)
+  requires
+   sord 0.16.14-1 (depth1)
+   requires
+    serd 0.30.16-1 (depth0)
+ wxWidgets 3.2.5-1 (depth4)
+ optional (but required for audacity to build/run)
+  webkit2gtk4.1 (depth3)
+optional
+ jack (depth1)
+ ladspa_sdk (depth0)
+ soundtouch 2.3.1-1 (depth0)
+ twolame 0.4.0-1 (depth0)
+ vamp-plugin-sdk 2.10.0-1 (depth0)
+
+N filezilla 3.67.1-1 (depth5)
+requires
+ wxWidgets (depth4)
+ libfilezilla 0.48.1-1 (depth0)
+
+N golly 4.3-1 (depth5)
+requires
+ wxWidgets (depth4)
 
 N xiphos 4.2.1-6 (depth11) (this has been updated
 -requires
