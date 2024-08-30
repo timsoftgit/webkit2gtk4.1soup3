@@ -466,6 +466,27 @@ requires
  wxWidgets (depth4)
  zstd-cmake 1.5.5-1 (depth0)
 
+N saga-gis 9.5.0-1 (depth5) (make sure wxWidgets is installed most recently out of the wx??? packages)
+requires
+ wxWidgets (depth4)
+
+N therion 6.2.1-1 (depth5)
+requires
+ bwidget 1.9.8-1 (depth0)
+ Catch2 3.5.4-1 (depth0)
+ fmt (depth0)
+ lcdf-typetools
+ proj (depth0)
+ tkimg 1.4.2-2 (depth1)
+ requires
+  tcllib 1.21-1 (depth0)
+ VTK (depth1)
+ wxWidgets (depth4)
+
+N wxFormBuilder 4.2.1-1 (depth5)
+requires
+ wxWidgets (depth4)
+
 
 N xiphos 4.2.1-6 (depth11) (this has been updated
 -requires
